@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/adarshthapa/oauth/issues"
   },
-  "homepage": "https://github.com/adarshthapa/oauth#readme"
+  "homepage": "https://github.com/adarshthapa/oauth#readme",
+  "dependencies": {
+    "ejs": "^2.6.2",
+    "express": "^4.17.1"
+  }
 }

@@ -8,14 +8,19 @@ passport.use(new GoogleStrategy({
     clientID: keys.google.clientID,
     clientSecret: keys.google.clientSecret
 }, (accessToken, refreshToken, profile, done) => {
-    console.log('Passport callback function called');
-    console.log(profile);
-    new User({
-        email: profile.email,
-        username: profile.displayName,
-        googleId: profile.id
-    }).save().then((newUser) => {
-        console.log(`New user created: ${newUser}`);
+    // check if user already exists in out db
+    User.findOne({ googleId: profile.id }).then((currentUser) => {
+        if (currentUser) {
+            console.log(`User is: ${currentUser}`);
+        } else {
+            new User({
+                email: profile.email,
+                username: profile.displayName,
+                googleId: profile.id
+            }).save().then((newUser) => {
+                console.log(`New user created: ${newUser}`);
+            })
+        }
     })
 })
 )

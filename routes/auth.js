@@ -13,7 +13,7 @@ router.get('/logout', (req, res) => {
 
 // OAuth: Google
 router.get('/google', passport.authenticate('google', {
-    scope: ['profile']
+    scope: ['email', 'profile']
 }));
 
 // Callback route

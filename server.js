@@ -1,5 +1,6 @@
 const express = require('express');
 const authRoutes = require('./routes/auth');
+const profileRoutes = require('./routes/profile');
 const passportSetup = require('./config/passport');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
@@ -25,8 +26,9 @@ mongoose.connect(keys.mongoDB.dbURI, () => {
     console.log('Connected to the MongoDB Cloud');
 })
 
-// Middlewares
+// routes
 app.use('/auth', authRoutes);
+app.use('/profile', profileRoutes);
 
 // home route
 app.get('/', (req, res) => {
